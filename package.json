@@ -1,5 +1,5 @@
 {
-  "name": "introspect",
+  "name": "@wengineering/introspect",
   "version": "0.1.0",
   "module": "index.ts",
   "bin": {
