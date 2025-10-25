@@ -37,6 +37,8 @@ Then, we use the Typescript compiler API to generate representations for each ta
 
 This project is only designed to be used with `bun`.
 
+Install from npm with `bun install @wengineering/introspect`.
+
 Note: this project is very much an exploration, I do not advise anyone to install it directly at the moment. It is best to copy paste the source, or simply ask AI to generate something similar for you. Some postgres types will need special consideration, like Arrays, etc, which I have not programmed yet.
 
 1. Set up the environment, set `DATABASE_URL` to `postgres://...`
