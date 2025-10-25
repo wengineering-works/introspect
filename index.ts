@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 import { sql } from "bun";
 import ts from "typescript";
 import prettier from "prettier";
@@ -33,10 +35,9 @@ const columns = await sql<
 `;
 
 console.log(
-  "Tables:",
+  "[introspect] fetched tables:",
   tables.map((t) => t.table_name)
 );
-console.log("Sample columns:", columns.slice(0, 5));
 
 // Map PostgreSQL types to TypeScript type nodes
 function getTypeNode(
@@ -50,7 +51,7 @@ function getTypeNode(
   if (udtName === "uuid") {
     baseType = ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword);
   } else if (udtName === "timestamptz" || udtName === "timestamp") {
-    baseType = ts.factory.createTypeReferenceNode("Date");
+    baseType = ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword);
   } else if (udtName === "citext") {
     baseType = ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword);
   } else {
@@ -79,11 +80,9 @@ function getTypeNode(
           ts.SyntaxKind.BooleanKeyword
         );
         break;
-      case "timestamp with time zone":
-      case "timestamp without time zone":
       case "date":
         // @todo: watch out for date types here
-        baseType = ts.factory.createTypeReferenceNode("Date");
+        baseType = ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword);
         break;
       case "json":
       case "jsonb":
@@ -211,11 +210,8 @@ const formattedOutput = await prettier.format(unformattedOutput, {
   trailingComma: "es5",
 });
 
-console.log("\n=== Generated TypeScript ===\n");
-console.log(formattedOutput);
-
-// Write to schema.d.ts
-const outputPath = new URL("schema.d.ts", import.meta.url);
+// Write to schema.d.ts in the current working directory
+const outputPath = "schema.d.ts";
 await Bun.write(outputPath, formattedOutput);
 
-console.log(`✓ Schema written to schema.d.ts`);
+console.log(`[introspect] successfully updated schema in schema.d.ts`);
