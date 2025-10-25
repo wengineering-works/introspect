@@ -25,17 +25,19 @@ A few things:
 
 This introspect is an exploration of working with the basic tools themselves.
 
-The user only needs to enter a `DATABASE_URL` env.
+The user only needs to provide `DATABASE_URL` in the env.
 
 First, we query the `information_schema` in the database for information about tables and columns.
 
 Then, we use the Typescript compiler API to generate representations for each table.
 
-@todo: In the future I'll share more info about how to manipulate common types. For example, date types should sometimes be `Date` objects in Typescript, but other times you want to represent them as `string` types.
+@todo: In the future I'll share more info about how to manipulate common types. For example, date types should sometimes be `Date` objects in Typescript, but other times you want to represent them as `string` types. Please note that right now, `date`, `timestamp`, and `timestamp with time zone` are represented as `string` types in Typescript. This suits my primary need for them.
 
 ## Usage
 
-Note: this project is very much an exploration, I do advise anyone to install it directly at the moment. It is best to copy paste the source, or simply ask AI to generate something similar for you. Some postgres types will need special consideration, like Arrays, etc, which I have not programmed yet.
+This project is only designed to be used with `bun`.
+
+Note: this project is very much an exploration, I do not advise anyone to install it directly at the moment. It is best to copy paste the source, or simply ask AI to generate something similar for you. Some postgres types will need special consideration, like Arrays, etc, which I have not programmed yet.
 
 1. Set up the environment, set `DATABASE_URL` to `postgres://...`
 2. Run, `bun index.ts`

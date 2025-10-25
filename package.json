@@ -1,10 +1,16 @@
 {
   "name": "introspect",
+  "version": "0.1.0",
   "module": "index.ts",
+  "bin": {
+    "introspect": "./index.ts"
+  },
+  "scripts": {
+    "start": "bun index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
-  "private": true,
   "type": "module",
   "dependencies": {
     "prettier": "^3.6.2",
