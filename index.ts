@@ -59,13 +59,13 @@ function getTypeNode(
     switch (dataType) {
       case "character varying":
       case "text":
+      case "bigint":
       case "character":
         baseType = ts.factory.createKeywordTypeNode(
           ts.SyntaxKind.StringKeyword
         );
         break;
       case "integer":
-      case "bigint":
       case "smallint":
       case "numeric":
       case "decimal":
