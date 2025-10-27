@@ -1,6 +1,6 @@
 {
   "name": "@wengineering/introspect",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "module": "index.ts",
   "bin": {
     "introspect": "./index.ts"
