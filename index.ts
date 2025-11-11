@@ -120,7 +120,14 @@ function getTypeNode(
 function toPascalCase(str: string): string {
   return str
     .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => {
+      // This preserves when leading and trailing underscores are split
+      if (word === "") {
+        return "_";
+      }
+
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
     .join("");
 }
 
